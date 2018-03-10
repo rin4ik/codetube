@@ -24,7 +24,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="channel_name" class="col-md-4 col-form-label text-md-right">{{ __('Channel name') }}</label>
 
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('channel_name') ? ' is-invalid' : '' }}" name="channel_name" value="{{ old('channel_name') }}" required autofocus>
+
+                                @if ($errors->has('channel_name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('channel_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

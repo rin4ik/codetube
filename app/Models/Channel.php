@@ -1,18 +1,26 @@
 <?php
 
 namespace App\Models;
-use Cviebrock\EloquentSluggable\Sluggable;
+
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Channel extends Model
-{ 
+{
     use Sluggable;
+    protected $fillable = ['name', 'slug', 'description', 'image_filename'];
+
     public function sluggable()
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
