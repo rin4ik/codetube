@@ -10,6 +10,11 @@ class Channel extends Model
     use Sluggable;
     protected $fillable = ['name', 'slug', 'description', 'image_filename'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function sluggable()
     {
         return [
