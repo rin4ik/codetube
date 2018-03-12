@@ -43,10 +43,10 @@
                     @endif
                </div>
                <div class="form-group">
-                <label for="image">Channel image</label>
+                <label for="image">Channel image</label><br>
                 <input type="file" name="image" id="image">
              
-           </div>
+                 </div>
                @csrf
                @method('put')
             <button type="submit" class="btn btn-default">Update</button>
