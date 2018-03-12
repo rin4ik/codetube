@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Channel;
 use Illuminate\Bus\Queueable;
+use Image;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
@@ -37,6 +38,10 @@ class UploadImage implements ShouldQueue
     {
         $path = storage_path() . '/uploads/' . $this->fileId;
         $fileName = $this->fileId . '.png';
+
+        Image::make($path)->encode('png')->fit(60, 60, function ($c) {
+            $c->upsize();
+        })->save();
 
         if (Storage::disk('s3images')->put('profile/' . $fileName, fopen($path, 'r+'))) {
             \File::delete($path);
