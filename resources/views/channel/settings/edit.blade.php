@@ -8,7 +8,7 @@
                 <div class="card-header">Channel settings</div>
 
                 <div class="card-body ">
-                    <form action="/channel/{{$channel->slug}}/edit" method="post">
+                    <form action="/channel/{{$channel->slug}}/edit" method="post" enctype="multipart/form-data">
                    <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{old('name')?old('name') : $channel->name}}">
@@ -42,6 +42,11 @@
                         </div>
                     @endif
                </div>
+               <div class="form-group">
+                <label for="image">Channel image</label>
+                <input type="file" name="image" id="image">
+             
+           </div>
                @csrf
                @method('put')
             <button type="submit" class="btn btn-default">Update</button>
