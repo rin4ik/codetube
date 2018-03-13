@@ -15,6 +15,11 @@ class Channel extends Model
         return 'slug';
     }
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
     public function sluggable()
     {
         return [
@@ -27,10 +32,5 @@ class Channel extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function videos()
-    {
-        $this->hasMany(Video::class);
     }
 }

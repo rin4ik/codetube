@@ -24,7 +24,7 @@ class Video extends Model
 
     public function channel()
     {
-        $this->belongsTo(Channel::class);
+        return $this->belongsTo(Channel::class);
     }
 
     public function getRouteKeyName()
