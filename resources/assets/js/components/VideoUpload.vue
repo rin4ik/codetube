@@ -137,6 +137,13 @@ export default {
       e.percent = e.loaded / e.total * 100;
       this.fileProgress = e.percent;
     }
+  },
+  mounted() {
+    window.onbeforeunload = () => {
+      if (this.uploading && !this.uploadingComplete && !this.failed) {
+        return "Are you sure you want to navigate away";
+      }
+    };
   }
 };
 </script>
