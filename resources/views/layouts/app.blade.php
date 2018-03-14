@@ -18,6 +18,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <script>
+        
+        window.App={!!json_encode(['csrfToken'=>csrf_token(),
+        'url'=>config('app.url'),
+        'user'=>Auth::user(),
+        'signedIn'=>Auth::check()
+        ])!!};
+    </script>
 </head>
 <body>
     <div id="app">
