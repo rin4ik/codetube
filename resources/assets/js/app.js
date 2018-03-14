@@ -20,5 +20,6 @@ Vue.component('video-upload', require('./components/VideoUpload.vue'));
 Vue.use(VueResource);
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.head.querySelector('meta[name="csrf-token"]').content;
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: window.App
 });
