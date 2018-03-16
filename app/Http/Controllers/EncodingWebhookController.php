@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class EncodingWebhookController extends Controller
 {
     public function handle(Request $request)
     {
-        Log::info($request);
         $event = camel_case($request->event);
         if (method_exists($this, $event)) {
             $this->{$event}($request);
@@ -28,7 +26,7 @@ class EncodingWebhookController extends Controller
     protected function encodingProgress(Request $request)
     {
         $video = $this->getVideoByFilename($request->original_filename);
-        $video->processed_percentage = $request->event;
+        $video->processed_percentage = $request->progress;
         $video->save();
     }
 
