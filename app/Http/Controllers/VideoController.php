@@ -14,6 +14,13 @@ class VideoController extends Controller
         return view('video.index', compact('videos'));
     }
 
+    public function edit(Video $video)
+    {
+        $this->authorize('edit', $video);
+
+        return view('video.edit', compact('video'));
+    }
+
     public function update(VideoUpdateRequest $request, Video $video)
     {
         $this->authorize('update', $video);
