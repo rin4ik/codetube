@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                @forelse($videos as $video)
-                <div class="bg-light p-3 mb-4  hoverable " style="border:1px solid #e0e0e0; border-radius:5px;"  >
+                <div class="bg-light p-3 mb-4 " style="border:1px solid #e0e0e0; border-radius:5px;"  >
                 
                 <div class="row" >
                         <div class="col-sm-3 ">
@@ -22,12 +22,16 @@
                              <p class="text-muted">
                                 @if(!$video->isProcessed())
                                     {{$video->processedPercentage()}}
-                                @else
+                                @else 
                                 {{$video->created_at->toDateTimeString() }}
                             @endif
                         </p>
-                            <form action="" method="post">
-                            <a href="/videos/{{$video->uid}}/edit" class="btn btn-outline-default btn-sm ">Edit</a></form>
+                            <form action="/videos/{{$video->uid}}" method="post">
+                            <a href="/videos/{{$video->uid}}/edit" class="btn btn-outline-default btn-sm ">Edit</a>
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
+                            @csrf
+                                @method('delete')
+                        </form>
                             </div>
                             <div class="col-sm-6">
                                 <p>{{ucfirst($video->visibility)}}</p>

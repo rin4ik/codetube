@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/videos', 'VideoController@index');
     Route::post('/videos', 'VideoController@store');
+    Route::delete('/videos/{video}', 'VideoController@delete');
     Route::get('/videos/{video}/edit', 'VideoController@edit');
     Route::put('/videos/{video}', 'VideoController@update');
     Route::get('/channel/{channel}/edit', 'ChannelSettingsController@edit');
