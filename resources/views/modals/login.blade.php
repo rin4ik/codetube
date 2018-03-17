@@ -1,9 +1,9 @@
 <login inline-template>
-<modal name="login" height="auto" width="550px">
+<modal name="login" height="auto" width="550px" class="animated fadeInUp  ">
     <div style="" >
 
             <form @submit.prevent="login">
-                            <div class="card-body" >
+                            <div class="card-body " style="background:#fbfbfc"  >
                           
             <div class="modal-header " >
                     <h5 class="modal-title" style="text-align:center;">LOGIN</h5>
@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                      <div class="modal-footer " style="">
+                                      <div class="modal-footer " style="background:#f5f8fa;border:1px solid rgb(204, 208, 211);">
                                             <button type="submit" class="btn btn-primary btn-sm" :class="loading ?  'loader':''" >
                                                 {{ __('Sign in') }}
                                             </button>

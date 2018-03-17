@@ -1,6 +1,6 @@
 <register inline-template>
-        <modal name="register" height="auto" width="530px">
-                <div class="card-body"  >
+        <modal name="register" height="auto" width="530px" class="animated fadeInUp ">
+                <div class="card-body"  style="background:#fbfbfc">
                         <div class="modal-header " >
                                 <h5 class="modal-title" style="text-align:center;">REGISTER</h5>
                         </div>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
     
-                            <div class="modal-footer">
+                            <div class="modal-footer" style="background:#f5f8fa;border:1px solid rgb(204, 208, 211);">
                                     <button type="submit" :class="loading ?  'loader':''" class="btn btn-outline-primary btn-sm">
                                         {{ __('Register') }}
                                     </button>
