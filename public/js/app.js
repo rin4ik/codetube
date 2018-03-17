@@ -50160,7 +50160,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       form: {
         email: "",
         password: ""
-      }
+      },
+      loading: false
     };
   },
 
@@ -50168,10 +50169,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     login: function login() {
       var _this = this;
 
+      this.loading = true;
+
       axios.post("/login", this.form).then(function () {
         return location.reload();
       }).catch(function (error) {
         _this.feedback = error.response.data.message;
+        _this.loading = false;
       });
     },
     register: function register() {
@@ -50246,6 +50250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: "",
         password_confirmation: ""
       },
+      loading: false,
       feedback: ""
     };
   },
@@ -50254,10 +50259,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     register: function register() {
       var _this = this;
 
+      this.loading = true;
       axios.post("/register", this.form).then(function (response) {
         location.reload();
       }).catch(function (error) {
         _this.feedback = error.response.data.errors;
+        _this.loading = false;
       });
     }
   }

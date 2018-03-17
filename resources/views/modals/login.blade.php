@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                       <div class="modal-footer " style="">
-                                            <button type="submit" class="btn btn-primary btn-sm" >
+                                            <button type="submit" class="btn btn-primary btn-sm" :class="loading ?  'loader':''" >
                                                 {{ __('Sign in') }}
                                             </button>
             

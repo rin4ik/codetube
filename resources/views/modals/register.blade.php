@@ -55,7 +55,7 @@
                             </div>
     
                             <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-primary btn-sm">
+                                    <button type="submit" :class="loading ?  'loader':''" class="btn btn-outline-primary btn-sm">
                                         {{ __('Register') }}
                                     </button>
                                 
