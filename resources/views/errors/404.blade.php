@@ -9,7 +9,6 @@
         
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
         
-<link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
     <style>
             *
@@ -290,7 +289,7 @@
 <body>
     	<div class="header">
                 <div class="logo" style="color:white">
-                    <h1><a href="#">Sorry! Page not found</a></h1>
+                    <h1><a href="#">...Oops! The page you requested was not found!</a></h1>
                 </div>
             </div>
         <!-- Error Page -->
@@ -303,7 +302,7 @@
                             <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
                             <div class="msg">OH!<span class="triangle"></span></div>
                         </div>
-                       <a href="/"  class="btn btn-info btn-lg " style="margin-left:47%">Head back home   
+                       <a href="/"  class="btn btn-info btn-lg " style="margin-left:47%">Back to homepage   
                                   &nbsp; <i class="fas fa-home"></i>
                        </a>
                        
