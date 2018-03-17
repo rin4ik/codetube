@@ -1,10 +1,13 @@
 <register inline-template>
         <modal name="register" height="auto" width="530px">
-                <div class="card-body" style="padding-top:50px">
+                <div class="card-body"  >
+                        <div class="modal-header " >
+                                <h5 class="modal-title" style="text-align:center;">REGISTER</h5>
+                        </div>
                         <form  @submit.prevent="register">
                           
     
-                            <div class="form-group row" style="margin-bottom:30px">
+                            <div class="form-group row" style="margin-bottom:30px; margin-top:30px">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
     
                                 <div class="col-md-6">
@@ -51,13 +54,14 @@
                                 </div>
                             </div>
     
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                            <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">
                                         {{ __('Register') }}
                                     </button>
-                                </div>
-                            </div>
+                                
+                                <a   class="btn btn-outline-danger btn-sm" @click="$modal.hide('register')" >
+                                        CAncel
+                                  </a></div>
                             <div  v-for="feed in feedback">
                                     <span  style="color:red" v-text="feed" ></span><br>
                             </div>

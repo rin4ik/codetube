@@ -1,12 +1,14 @@
 <login inline-template>
 <modal name="login" height="auto" width="550px">
-    <div style="padding-top:20px; " >
+    <div style="" >
 
             <form @submit.prevent="login">
-                            <div class="card-body" style="margin-top:20px;">
+                            <div class="card-body" >
                           
-            
-                  <div class="form-group row">
+            <div class="modal-header " >
+                    <h5 class="modal-title" style="text-align:center;">LOGIN</h5>
+            </div>
+                  <div class="form-group row" style="padding-top:30px;">
                                         <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
             
                                         <div class="col-md-6">
@@ -33,12 +35,12 @@
                                         </div>
                                     </div>
                                       <div class="modal-footer " style="">
-                                            <button type="submit" class="btn btn-outline-primary btn-sm" >
-                                                {{ __('Login') }}
+                                            <button type="submit" class="btn btn-primary btn-sm" >
+                                                {{ __('Sign in') }}
                                             </button>
             
-                                            <a   class="btn btn-outline-info btn-sm" @click="register" >
-                                                  <span style="text-muted;"> {{ __('or register') }}</span> 
+                                            <a   class="btn btn-outline-warning btn-sm" @click="register" >
+                                                  <span style="text-muted;"> {{ __('Sign up') }}</span> 
                                             </a>
                                     </div>
                                     <div  v-if="feedback">
