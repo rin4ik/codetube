@@ -27,6 +27,12 @@
         'signedIn'=>Auth::check()
         ])!!};
     </script>
+    <style>
+     
+[v-cloak] {
+    display: none;
+  }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -35,6 +41,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div v-cloak>
+                @include('modals.all')
+                
+        </div>
     </div>
 
     <!-- Scripts -->
