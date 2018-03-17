@@ -1,5 +1,7 @@
-<login inline-template>
-<modal name="login" height="auto" width="550px" class="animated fadeInUp  ">
+<login inline-template><transition enter-active-class="animated fadeInUpBig"  
+    leave-active-class="animated slideOutDown"
+    mode="out-in" appear>
+<modal name="login" height="auto" width="550px" >
     <div style="" >
 
             <form @submit.prevent="login">
@@ -51,5 +53,5 @@
                         </form>
     </div>
     
-</modal>
+</modal></transition>
 </login>

@@ -1,5 +1,10 @@
 <register inline-template>
-        <modal name="register" height="auto" width="530px" class="animated fadeInUp ">
+    <transition enter-active-class="animated fadeInUpBig"  
+    leave-active-class="animated shake"
+    mode="out-in" appear>
+  
+     
+        <modal name="register" height="auto" width="530px"  >
                 <div class="card-body"  style="background:#fbfbfc">
                         <div class="modal-header " >
                                 <h5 class="modal-title" style="text-align:center;">REGISTER</h5>
@@ -68,5 +73,5 @@
                         </form>
                     </div>
             
-        </modal>
+        </modal></transition>
     </register>
