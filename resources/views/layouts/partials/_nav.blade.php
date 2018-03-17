@@ -23,7 +23,7 @@
                     {{--  //<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>  --}}
                 </li>
                 <li>
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="nav-link" @click="$modal.show('register')">{{ __('Register') }}</a>
                 </li>
                 @else
                 <a class="nav-link" href="/upload">Upload</a>

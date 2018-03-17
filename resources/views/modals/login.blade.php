@@ -1,5 +1,5 @@
 <login inline-template>
-<modal name="login" height="auto" width="600px">
+<modal name="login" height="auto" width="550px">
     <div style="padding-top:20px; " >
 
             <form @submit.prevent="login">
@@ -37,7 +37,9 @@
                                                 {{ __('Login') }}
                                             </button>
             
-                                         
+                                            <a   class="btn btn-outline-info btn-sm" @click="register" >
+                                                  <span style="text-muted;"> {{ __('or register') }}</span> 
+                                            </a>
                                     </div>
                                     <div  v-if="feedback">
                                             <span  style="color:red" v-text="feedback" ></span>

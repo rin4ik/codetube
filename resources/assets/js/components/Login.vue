@@ -17,6 +17,10 @@ export default {
         .catch(error => {
           this.feedback = error.response.data.message;
         });
+    },
+    register() {
+      this.$modal.hide("login");
+      this.$modal.show("register");
     }
   }
 };

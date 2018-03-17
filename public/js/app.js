@@ -13816,6 +13816,7 @@ window.Vue = __webpack_require__(39);
 
 Vue.component('video-upload', __webpack_require__(42));
 Vue.component('login', __webpack_require__(51));
+Vue.component('register', __webpack_require__(53));
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_js_modal___default.a);
@@ -50171,6 +50172,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return location.reload();
       }).catch(function (error) {
         _this.feedback = error.response.data.message;
+      });
+    },
+    register: function register() {
+      this.$modal.hide("login");
+      this.$modal.show("register");
+    }
+  }
+});
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(43)
+/* script */
+var __vue_script__ = __webpack_require__(54)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Register.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f88ac34c", Component.options)
+  } else {
+    hotAPI.reload("data-v-f88ac34c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      form: {
+        name: "",
+        channel_name: "",
+        username: "",
+        email: "",
+        password: "",
+        password_confirmation: ""
+      },
+      feedback: ""
+    };
+  },
+
+  methods: {
+    register: function register() {
+      var _this = this;
+
+      axios.post("/register", this.form).then(function (response) {
+        location.reload();
+      }).catch(function (error) {
+        _this.feedback = error.response.data.errors;
       });
     }
   }
