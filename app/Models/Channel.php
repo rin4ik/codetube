@@ -33,4 +33,12 @@ class Channel extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getImage()
+    {
+        if (!$this->image_filename) {
+            return config('codetube.buckets.images') . '/profiles/default.png';
+        }
+        return config('codetube.buckets.images') . '/profile/' . $this->image_filename;
+    }
 }

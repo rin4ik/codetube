@@ -66,4 +66,14 @@ class Video extends Model
             return 'processing ...';
         }
     }
+
+    public function isPrivate()
+    {
+        return $this->visibility === 'private';
+    }
+
+    public function ownedByUser(User $user)
+    {
+        return $this->channel->user->id === $user->id;
+    }
 }

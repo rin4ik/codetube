@@ -39,7 +39,7 @@ class UploadImage implements ShouldQueue
         $path = storage_path() . '/uploads/' . $this->fileId;
         $fileName = $this->fileId . '.png';
 
-        Image::make($path)->encode('png')->fit(60, 60, function ($c) {
+        Image::make($path)->encode('png')->fit(50, 50, function ($c) {
             $c->upsize();
         })->save();
 

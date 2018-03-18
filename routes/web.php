@@ -18,10 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::post('/webhook/encoding', 'EncodingWebhookController@handle');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/videos/{video}','VideoController@show');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/upload', 'VideoUploadController@index');
     Route::post('/upload', 'VideoUploadController@store');
-
     Route::get('/videos', 'VideoController@index');
     Route::post('/videos', 'VideoController@store');
     Route::delete('/videos/{video}', 'VideoController@delete');
