@@ -27,7 +27,7 @@
                             @endif
                         </p>
                             <form action="/videos/{{$video->uid}}" method="post">
-                            <a href="/videos/{{$video->uid}}/edit" class="btn btn-outline-default btn-sm ">Edit</a>
+                            <a :video="{{$video}}" @click="$modal.show('edit')"class="btn btn-outline-default btn-sm ">Edit</a>
                             <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
                             @csrf
                                 @method('delete')

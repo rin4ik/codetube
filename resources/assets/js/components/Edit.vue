@@ -1,5 +1,6 @@
 <script>
 export default {
+  props: ["video"],
   data() {
     return {
       feedback: "",
@@ -11,7 +12,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    edit() {
       this.loading = true;
 
       axios
