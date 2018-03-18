@@ -76,4 +76,15 @@ class Video extends Model
     {
         return $this->channel->user->id === $user->id;
     }
+
+    public function canBeAccessed($user = null)
+    {
+        if (!$user && $this->isPrivate()) {
+            return false;
+        }
+        if ($user && $this->isPrivate() && ($user->id !== $this->channel->user_id)) {
+            return false;
+        }
+        return true;
+    }
 }

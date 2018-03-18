@@ -3,16 +3,29 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
           
-           @can('update', $video)
+           @if($video->isPrivate() && auth()->check() && $video->ownedByUser(auth()->user()))
            <div class="alert alert-danger">
                 Your video currently private. Only you can see it.
             </div>
-           @endcan
+           @endif
            
            @if($video->isProcessed() && $video->canBeAccessed(Auth::user()) )
             show video player
            @endif
            
+           @if(!$video->isProcessed())
+               <div class="video-placeholder">
+                   <div class="video-placeholder__header">
+                       The video is processing. Come back later.
+                   </div>
+                </div>      
+           @elseif(!$video->canBeAccessed(auth()->user()))
+           <div class="video-placeholder">
+                <div class="video-placeholder__header">
+                        The video is private.
+                    </div>
+             </div>
+           @endif
            <div class="card">
 
                <div class="card-body">
