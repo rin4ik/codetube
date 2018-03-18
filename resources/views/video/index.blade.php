@@ -34,7 +34,12 @@
                         </form>
                             </div>
                             <div class="col-sm-6">
-                                <p>{{ucfirst($video->visibility)}}</p>
+                                @if($video->visibility == 'public')
+                                <p style="color:green"> {{ucfirst($video->visibility)}}</p>
+                                @elseif($video->visibility == 'private')
+                                <p style="color:red"> {{ucfirst($video->visibility)}}</p>    @else
+                                <p style="color:#888806"> {{ucfirst($video->visibility)}}</p>                                    
+                               @endif         
                             </div>
                         </div> 
                             </div>             
