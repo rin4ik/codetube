@@ -15,20 +15,18 @@
   </template>
 
   <script>
-  import Update from "./Update.vue";
-  export default {
-    components: { appUpdate: Update },
-    props: ["video"],
-    data() {
-      return {
-        feedback: "",
-        loading: false
-      };
-    },
-    methods: {
-      show() {
-        this.$modal.show("update");
-      }
+export default {
+  props: ["video"],
+  data() {
+    return {
+      feedback: "",
+      loading: false
+    };
+  },
+  methods: {
+    show() {
+      this.$modal.show("update");
     }
-  };
-  </script>
+  }
+};
+</script>
