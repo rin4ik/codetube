@@ -10,7 +10,7 @@
            @endif
            
            @if($video->isProcessed() && $video->canBeAccessed(Auth::user()) )
-            show video player
+              <video-player video-uid="{{$video->uid}}" video-url="{{$video->getStreamUrl()}}" thumbnail-url="{{$video->getThumbnail()}}"></video-player>
            @endif
            
            @if(!$video->isProcessed())

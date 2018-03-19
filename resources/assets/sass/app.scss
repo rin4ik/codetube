@@ -6,8 +6,9 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.min.css';
 @import '~mdbootstrap/css/mdb.min.css';
+@import 'vendor/videojs';
 @import "style";
-@import "components/video";
+@import "vendor/videojs";
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

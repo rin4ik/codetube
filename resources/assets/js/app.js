@@ -20,6 +20,7 @@ Vue.component('video-upload', require('./components/VideoUpload.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('edit', require('./components/Edit.vue'));
+Vue.component('video-player', require('./components/VideoPlayer.vue'));
 
 Vue.use(VueResource);
 Vue.use(VModal);
