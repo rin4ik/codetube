@@ -1,4 +1,4 @@
-<login inline-template><transition enter-active-class="animated fadeInUpBig"  
+<login  inline-template><transition enter-active-class="animated fadeInUpBig"  
     leave-active-class="animated slideOutDown"
     mode="out-in" appear>
 <modal name="login" height="auto" width="550px" >

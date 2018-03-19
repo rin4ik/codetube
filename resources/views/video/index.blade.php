@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,9 +9,9 @@
                 <div class="card-header">Videos</div>
 
                 <div class="card-body">
-               @forelse($videos as $video)
+               @forelse($videos  as   $video)
                 <div class="bg-light p-3 mb-4 " style="border:1px solid #e0e0e0; border-radius:5px;"  >
-                
+                   
                 <div class="row" >
                         <div class="col-sm-3 ">
                             <a href="/videos/{{$video->uid}}"><img src="{{$video->getThumbnail()}}" class="img-fluid img-thumbnail" alt="{{$video->title}} thumbnail"></a>  
@@ -26,9 +27,10 @@
                                 {{$video->created_at->toDateTimeString() }}
                             @endif
                         </p>
-                            <form action="/videos/{{$video->uid}}" method="post">
-                            <a :video="{{$video}}" @click="$modal.show('edit')"class="btn btn-outline-default btn-sm ">Edit</a>
-                            <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
+                     
+                                <form action="/videos/{{$video->uid}}" method="post">
+                            <edit :video="{{$video}}" ></edit>
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
                             @csrf
                                 @method('delete')
                         </form>

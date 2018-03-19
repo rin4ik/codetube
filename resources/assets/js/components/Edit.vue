@@ -1,32 +1,34 @@
-<script>
-export default {
-  props: ["video"],
-  data() {
-    return {
-      feedback: "",
-      form: {
-        email: "",
-        password: ""
-      },
-      loading: false
-    };
-  },
-  methods: {
-    edit() {
-      this.loading = true;
 
-      axios
-        .post("/login", this.form)
-        .then(() => location.reload())
-        .catch(error => {
-          this.feedback = error.response.data.message;
-          this.loading = false;
-        });
+  <template>
+        <div>
+          <a @click="show"   class="btn btn-outline-default btn-sm ">Edit</a>
+          <transition enter-active-class="animated fadeInUpBig" leave-active-class="animated shake" mode="out-in" appear>
+
+
+          <modal name="update"    >
+            <input id="name" type="text" class="form-control" name="name"           v-model="video.title" required autofocus>
+  
+                  </modal>
+                  </transition>
+        </div>
+        
+  </template>
+
+  <script>
+  import Update from "./Update.vue";
+  export default {
+    components: { appUpdate: Update },
+    props: ["video"],
+    data() {
+      return {
+        feedback: "",
+        loading: false
+      };
     },
-    register() {
-      this.$modal.hide("login");
-      this.$modal.show("register");
+    methods: {
+      show() {
+        this.$modal.show("update");
+      }
     }
-  }
-};
-</script>
+  };
+  </script>

@@ -43,6 +43,7 @@
                 @include('modals.all')
                 
         </div>
+       
     </div>
 
     <!-- Scripts -->
