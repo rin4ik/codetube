@@ -23,4 +23,4 @@ npm run dev
 
 Next, boot up a server and visit your forum. If using a tool like Laravel Valet, of course the URL will default to `http://codetube.test`. 
 
-1. Visit: `http://codetube.test/register` to register a new codetube account.
+1. Visit: `http://codetube.test` click to register button at the top of the window for a new codetube account.
