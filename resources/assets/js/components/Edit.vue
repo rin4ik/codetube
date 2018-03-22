@@ -17,32 +17,30 @@
                         <div class="form-group" style="padding-top:30px;">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" id="title" name="title" 
-                             v-model="form.title">
+                             v-model="title">
                           
                         </div>
                         <div class="form-group">
                                 <label for="description">Descrition</label>
-                                <textarea name="description" id="description" class="form-control" v-model="form.description">  
+                                <textarea name="description" id="description" class="form-control" v-model="description">  
                                 </textarea>
                         
                             </div>
                             <div class="form-group">
                               <label for="visibility">Visibility</label>
-                                    <select name="visibility" id="visibility" class="form-control" v-model="form.visibility" > 
+                                    <select name="visibility" id="visibility" class="form-control" v-model="visibility" > 
                                       <option v-for="visibility in ['private','public','unlisted']">{{visibility}}</option>
                                     </select>
                             
                                 </div>
                                 <div class="form-group">
                                     <label for="allow_votes">
-                                        <input type="checkbox" v-model="form.allow_votes"   v-bind:true-value="1"
-  v-bind:false-value="0"> Allow votes
+                                        <input type="checkbox" v-model="allow_votes"    > Allow votes
                                     </label>
                                 </div>
                                 <div class="form-group">
                                         <label for="allow_comments">
-                                            <input type="checkbox"   v-model="form.allow_comments"   v-bind:true-value="1"
-  v-bind:false-value="0"> Allow comments
+                                            <input type="checkbox"   v-model="allow_comments"   > Allow comments
                                         </label>
                                     </div>
                                 <div class="modal-footer" style="background:#f5f8fa;border:1px solid rgb(204, 208, 211);">
@@ -69,28 +67,25 @@ export default {
     return {
       feedback: "",
       loading: false,
-      form: {
-        title: this.video.title,
-        description: this.video.description,
-        visibility: this.video.visibility,
-        allow_votes: this.video.allow_votes,
-        allow_comments: this.video.allow_comments
-      }
+      title: this.video.title,
+      description: this.video.description,
+      visibility: this.video.visibility,
+      allow_votes: this.video.allow_votes,
+      allow_comments: this.video.allow_comments
     };
-  },
-  filters: {
-    capitalize: function(value) {
-      if (!value) return "";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    }
   },
   methods: {
     update() {
-      console.log(this.form);
+      console.log(this.allow_votes);
       this.loading = true;
       this.$http
-        .put("/videos/" + this.video.uid, this.form)
+        .put("/videos/" + this.video.uid, {
+          title: this.title,
+          description: this.description,
+          visibility: this.visibility,
+          allow_votes: !!this.allow_votes,
+          allow_comments: !!this.allow_comments
+        })
         .then(response => {
           this.loading = false;
         })
