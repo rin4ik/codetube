@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+  
+use App\Models\VideoView;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,7 +22,10 @@ class Video extends Model
         'allow_comments',
         'processed_percentage'
         ];
-
+    public function views()
+    {
+        return $this->hasMany(VideoView::class);
+    }
     public function channel()
     {
         return $this->belongsTo(Channel::class);
@@ -77,7 +81,7 @@ class Video extends Model
         return $this->channel->user->id === $user->id;
     }
 
-    public function canBeAccessed($user = null)
+    public function canBeAccessed($user  =null)
     {
         if (!$user && $this->isPrivate()) {
             return false;
@@ -87,8 +91,14 @@ class Video extends Model
         }
         return true;
     }
+
     public function getStreamUrl()
     {
-        return config('codetube.buckets.videosu'). '/'. $this->uid.'.mp4';
+        return config('codetube.buckets.videosu') . '/' . $this->uid . '.mp4';
     }
+    public function viewCount()
+    {
+        return $this->views->count();
+    }
+   
 }
