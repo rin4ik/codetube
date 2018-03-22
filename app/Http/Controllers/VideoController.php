@@ -17,6 +17,8 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         return view('video.show', compact('video'));
+
+ 
     }
 
     public function edit(Video $video)
@@ -29,6 +31,7 @@ class VideoController extends Controller
     public function update(VideoUpdateRequest $request, Video $video)
     {
         $this->authorize('update', $video);
+      
         $video->update([
             'title' => $request->title,
             'description' => $request->description,

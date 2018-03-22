@@ -33,6 +33,9 @@ export default {
         Math.round(this.player.currentTime()) ===
         Math.round(10 * this.duration / 100)
       );
+    },
+    createView() {
+      this.$http.post("/videos/" + this.videoUid + "/views");
     }
   },
   mounted() {
@@ -46,7 +49,7 @@ export default {
     });
     setInterval(() => {
       if (this.hasHitQuotaView()) {
-        console.log("log a view");
+        this.createView();
       }
     }, 1000);
   }
