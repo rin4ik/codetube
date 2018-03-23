@@ -32,7 +32,8 @@
   }
     </style>
 </head>
-<body>
+<body> 
+  
     <div id="app">
      @include('layouts.partials._nav')
 
@@ -41,9 +42,9 @@
         </main>
         <div v-cloak >
                 @include('modals.all')
-                
-        </div>
-       
+               
+        </div> 
+        
     </div>
 
     <!-- Scripts -->

@@ -1,4 +1,5 @@
 import VueResource from 'vue-resource';
+
 import VModal from 'vue-js-modal';
 /**
  * First we will load all of this project's JavaScript dependencies which
