@@ -38,7 +38,7 @@ class Channel extends Model
     public function getImage()
     {
         if (!$this->image_filename) {
-            return config('codetube.buckets.images') . '/profiles/default.png';
+            return config('codetube.buckets.images') . '/profile/default.png';
         }
         return config('codetube.buckets.images') . '/profile/' . $this->image_filename;
     }

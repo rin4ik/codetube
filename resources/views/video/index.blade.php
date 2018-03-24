@@ -28,7 +28,7 @@
                             @endif
                         </p>
                      
-                                <form action="/videos/{{$video->uid}}" method="post">
+                       <form action="/videos/{{$video->uid}}" method="post">
                             <edit :video="{{$video}}" ></edit>
                                     <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
                             @csrf

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Video;
 use App\Models\Channel;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class SearchController extends Controller
             return redirect('/');
         }
         $channels = Channel::search(request()->q)->take(2)->get();
-        return view('search.index', compact('channels'));
+        $videos = Video::search(request()->q)->get();
+        return view('search.index', compact('channels', 'videos'));
     }
 }
