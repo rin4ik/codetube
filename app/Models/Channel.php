@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Channel extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
     protected $fillable = ['name', 'slug', 'description', 'image_filename'];
 
     public function getRouteKeyName()
