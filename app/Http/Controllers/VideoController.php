@@ -10,8 +10,7 @@ class VideoController extends Controller
     public function index()
     {
         $videos = request()->user()->videos()->latestFirst()->paginate(10);
-        $app = new User;
-dd($app);        
+ 
         return view('video.index', compact('videos'));
     }
 

@@ -23,7 +23,7 @@
            <div class="video-placeholder">
                 <div class="video-placeholder__header">
                         The video is private.
-                    </div>
+                  </div>
              </div>
            @endif
            <div class="card">
