@@ -1,7 +1,11 @@
 
   <template>
-         <div style="display:inline-block">
-           <a @click="show"    class="btn btn-outline-default btn-sm ">Edit</a>
+         <div style="flex">
+           
+           <form @submit="destroy">
+            <a @click="show" class="btn btn-outline-default btn-sm ">Edit</a>
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
+            </form>
           <transition enter-active-class="animated fadeInUpBig" leave-active-class="animated shake" mode="out-in" appear>
 
 
@@ -56,6 +60,7 @@
 
           </modal>
         </transition>
+           
         </div>
 
   </template>
@@ -75,8 +80,12 @@ export default {
     };
   },
   methods: {
+    destroy() {
+      this.$http.delete("/videos/" + this.video.uid);
+
+      setTimeout(flash("Deleted!", "danger"), 8000);
+    },
     update() {
-      console.log(this.allow_votes);
       this.loading = true;
       this.$http
         .put("/videos/" + this.video.uid, {
@@ -87,6 +96,7 @@ export default {
           allow_comments: !!this.allow_comments
         })
         .then(response => {
+          flash("Updated!");
           this.loading = false;
         })
         .catch(error => {

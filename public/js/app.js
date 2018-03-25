@@ -73892,7 +73892,11 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-default",
+                      staticClass: "btn btn-outline-success btn-sm",
+                      staticStyle: {
+                        "padding-right": "10px",
+                        "padding-left": "10px"
+                      },
                       attrs: { type: "submit" },
                       on: {
                         click: function($event) {
@@ -74207,6 +74211,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["video"],
@@ -74223,10 +74232,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    destroy: function destroy() {
+      this.$http.delete("/videos/" + this.video.uid);
+
+      setTimeout(flash("Deleted!", "danger"), 8000);
+    },
     update: function update() {
       var _this = this;
 
-      console.log(this.allow_votes);
       this.loading = true;
       this.$http.put("/videos/" + this.video.uid, {
         title: this.title,
@@ -74235,6 +74248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         allow_votes: !!this.allow_votes,
         allow_comments: !!this.allow_comments
       }).then(function (response) {
+        flash("Updated!");
         _this.loading = false;
       }).catch(function (error) {
         _this.feedback = error.response.data.errors;
@@ -74257,16 +74271,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticStyle: { display: "inline-block" } },
+    { staticStyle: {} },
     [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-outline-default btn-sm ",
-          on: { click: _vm.show }
-        },
-        [_vm._v("Edit")]
-      ),
+      _c("form", { on: { submit: _vm.destroy } }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-outline-default btn-sm ",
+            on: { click: _vm.show }
+          },
+          [_vm._v("Edit")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-danger btn-sm",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Delete")]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "transition",

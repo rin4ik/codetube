@@ -43,7 +43,7 @@
                                 <option value="public">Public</option>
                               </select>
                             </div> 
-                            <button class="btn btn-default" type="submit" @click.prevent="update">Save changes</button>
+                            <button class="btn btn-outline-success btn-sm" type="submit" @click.prevent="update" style="padding-right:10px ; padding-left:10px">Save changes</button>
                     </div>  
                </div>
             </div>

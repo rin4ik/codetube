@@ -27,13 +27,8 @@
                                 {{$video->created_at->toDateTimeString() }}
                             @endif
                         </p>
-                     
-                       <form action="/videos/{{$video->uid}}" method="post">
-                            <edit :video="{{$video}}" ></edit>
-                                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
-                            @csrf
-                                @method('delete')
-                        </form>
+                        <edit :video="{{$video}}" ></edit>
+                        
                             </div>
                             <div class="col-sm-6">
                                 @if($video->visibility == 'public')

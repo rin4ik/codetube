@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div v-else class="row justify-content-center">
+        <div v-else class="row justify-content-center" v-cloak>
             <h2>Please, login first</h2>
         </div>
     </edit-channel>
