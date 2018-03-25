@@ -23,8 +23,8 @@ class CreateVideosTable extends Migration
             $table->string('video_id')->nullable();
             $table->string('video_filename')->nullable();
             $table->enum('visibility', ['public', 'unlisted', 'private']);
-            $table->boolean('allow_votes')->default(false);
-            $table->boolean('allow_comments')->default(false);
+            $table->boolean('allow_votes')->nullable()->default(false);
+            $table->boolean('allow_comments')->nullable()->default(false);
             $table->integer('processed_percentage')->nullable();
             $table->softDeletes();
             $table->timestamps();
