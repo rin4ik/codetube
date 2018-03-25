@@ -1,7 +1,7 @@
 <template>
  <transition enter-active-class="animated fadeInUpBig" leave-active-class="animated fadeOutRightBig" mode="out-in" appear>
 
-    <div class="alert alert-flash" :class="'alert-'+level" role="alert" v-show="show" v-text="body">
+    <div class="alert alert-flash" :class="'alert-'+level" role="alert" style="padding-right:20px; padding-left:20px" v-show="show" v-text="body">
     
 </div>
 </transition>

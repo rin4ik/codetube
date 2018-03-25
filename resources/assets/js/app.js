@@ -16,7 +16,10 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+window.events = new Vue();
+window.flash = function(message, level = 'success') {
+    window.events.$emit('flash', { message, level });
+}
 Vue.component('video-upload', require('./components/VideoUpload.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('register', require('./components/Register.vue'));

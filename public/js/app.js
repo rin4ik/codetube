@@ -37754,7 +37754,12 @@ window.Vue = __webpack_require__(43);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+window.events = new Vue();
+window.flash = function (message) {
+  var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
 
+  window.events.$emit('flash', { message: message, level: level });
+};
 Vue.component('video-upload', __webpack_require__(46));
 Vue.component('login', __webpack_require__(49));
 Vue.component('register', __webpack_require__(51));
@@ -73621,7 +73626,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -73633,7 +73637,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       title: "Untitled",
       description: null,
       visibility: "private",
-      saveStatus: null,
       fileProgress: 0
     };
   },
@@ -73680,18 +73683,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     update: function update() {
       var _this3 = this;
 
-      this.saveStatus = "Saving changes";
       return this.$http.put("/videos/" + this.uid, {
         title: this.title,
         description: this.description,
         visibility: this.visibility
       }).then(function (response) {
-        _this3.saveStatus = "Changes saved!";
-        setTimeout(function () {
-          _this3.saveStatus = null;
-        }, 3000);
+        flash("Changes saved!", "success");
+        _this3.saveStatus = "Changes saved.";
       }, function () {
-        _this3.saveStatus = "Failed to save changes.";
+        flash("Failed to save changes!", "danger");
       });
     },
     updateProgress: function updateProgress(e) {
@@ -73887,10 +73887,6 @@ var render = function() {
                         ])
                       ]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-muted pull-right" }, [
-                    _vm._v(_vm._s(_vm.saveStatus))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -77658,6 +77654,7 @@ var render = function() {
         ],
         staticClass: "alert alert-flash",
         class: "alert-" + _vm.level,
+        staticStyle: { "padding-right": "20px", "padding-left": "20px" },
         attrs: { role: "alert" },
         domProps: { textContent: _vm._s(_vm.body) }
       })

@@ -42,8 +42,7 @@
                                 <option value="unlisted">Unlisted</option>
                                 <option value="public">Public</option>
                               </select>
-                            </div>
-                            <span class="text-muted pull-right">{{saveStatus}}</span>
+                            </div> 
                             <button class="btn btn-default" type="submit" @click.prevent="update">Save changes</button>
                     </div>  
                </div>
@@ -64,7 +63,6 @@ export default {
       title: "Untitled",
       description: null,
       visibility: "private",
-      saveStatus: null,
       fileProgress: 0
     };
   },
@@ -114,7 +112,6 @@ export default {
         });
     },
     update() {
-      this.saveStatus = "Saving changes";
       return this.$http
         .put("/videos/" + this.uid, {
           title: this.title,
@@ -123,13 +120,11 @@ export default {
         })
         .then(
           response => {
-            this.saveStatus = "Changes saved!";
-            setTimeout(() => {
-              this.saveStatus = null;
-            }, 3000);
+            flash("Changes saved!", "success");
+            this.saveStatus = "Changes saved.";
           },
           () => {
-            this.saveStatus = "Failed to save changes.";
+            flash("Failed to save changes!", "danger");
           }
         );
     },
