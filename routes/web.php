@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/videos/{video}', 'VideoController@delete');
     Route::get('/videos/{video}/edit', 'VideoController@edit');
     Route::put('/videos/{video}', 'VideoController@update');
-    Route::get('/channel/{channel}/edit', 'ChannelSettingsController@edit');
     Route::put('/channel/{channel}/edit', 'ChannelSettingsController@update');
 });
+
+Route::get('/channel/{channel}/edit', 'ChannelSettingsController@edit');

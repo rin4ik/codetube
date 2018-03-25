@@ -23,6 +23,8 @@ Vue.component('register', require('./components/Register.vue'));
 Vue.component('edit', require('./components/Edit.vue'));
 Vue.component('video-player', require('./components/VideoPlayer.vue'));
 
+Vue.component('edit-channel', require('./components/EditChannel.vue'));
+
 Vue.use(VueResource);
 Vue.use(VModal);
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.head.querySelector('meta[name="csrf-token"]').content;
