@@ -8,7 +8,9 @@
 @import '~mdbootstrap/css/mdb.min.css';
 @import 'vendor/videojs';
 @import "style";
+@import "font-awesome/web-fonts-with-css/css/fontawesome-all";
 @import "vendor/videojs";
+@import "components/video";
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
