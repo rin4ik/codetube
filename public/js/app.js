@@ -77753,6 +77753,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.userVote = response.data.data.user_vote;
         _this.canVote = response.data.data.can_vote;
       });
+    },
+    vote: function vote(type) {
+      if (this.userVote == type) {
+        this[type]--;
+        this.userVote = null;
+        this.deleteVote(type);
+        return;
+      }
+      if (this.userVote) {
+        this[type == "up" ? "down" : "up"]--;
+      }
+      this[type]++;
+      this.userVote = type;
+      this.createVote(type);
+    },
+    deleteVote: function deleteVote(type) {
+      this.$http.delete("/videos/" + this.videoUid + "/votes").then(function (respons) {
+        flash("down", "danger");
+      });
+    },
+    createVote: function createVote(type) {
+      this.$http.post("/videos/" + this.videoUid + "/votes", { type: type }).then(function (response) {
+        flash("up");
+      });
     }
   },
   mounted: function mounted() {
@@ -77774,7 +77798,13 @@ var render = function() {
       {
         staticClass: "video__voting-button ",
         class: { "video__voting-button--voted": _vm.userVote == "up" },
-        attrs: { href: "#" }
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.vote("up")
+          }
+        }
       },
       [_c("span", { staticClass: "far fa-thumbs-up" })]
     ),
@@ -77784,7 +77814,13 @@ var render = function() {
       {
         staticClass: "video__voting-button",
         class: { "video__voting-button--voted": _vm.userVote == "down" },
-        attrs: { href: "#" }
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.vote("down")
+          }
+        }
       },
       [_c("span", { staticClass: "far fa-thumbs-down" })]
     ),

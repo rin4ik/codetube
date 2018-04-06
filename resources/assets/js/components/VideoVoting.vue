@@ -1,9 +1,9 @@
 <template>
     <div class="video__voting">
-        <a href="#" class="video__voting-button " :class="{'video__voting-button--voted':userVote == 'up'}">
+        <a href="#" class="video__voting-button " :class="{'video__voting-button--voted':userVote == 'up'}" @click.prevent="vote('up')">
             <span class="far fa-thumbs-up"></span>
         </a> {{up}} &nbsp;
-        <a href="#" class="video__voting-button" :class="{'video__voting-button--voted':userVote == 'down'}">
+        <a href="#" class="video__voting-button" :class="{'video__voting-button--voted':userVote == 'down'}" @click.prevent="vote('down')" >
             <span class="far fa-thumbs-down"></span>
         </a> {{down}} &nbsp;
     </div>
@@ -32,6 +32,33 @@ export default {
         this.userVote = response.data.data.user_vote;
         this.canVote = response.data.data.can_vote;
       });
+    },
+
+    vote(type) {
+      if (this.userVote == type) {
+        this[type]--;
+        this.userVote = null;
+        this.deleteVote(type);
+        return;
+      }
+      if (this.userVote) {
+        this[type == "up" ? "down" : "up"]--;
+      }
+      this[type]++;
+      this.userVote = type;
+      this.createVote(type);
+    },
+    deleteVote(type) {
+      this.$http.delete("/videos/" + this.videoUid + "/votes").then(respons => {
+        flash("down", "danger");
+      });
+    },
+    createVote(type) {
+      this.$http
+        .post("/videos/" + this.videoUid + "/votes", { type: type })
+        .then(response => {
+          flash("up");
+        });
     }
   },
   mounted() {

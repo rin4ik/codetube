@@ -44,7 +44,7 @@
                         <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" style="padding:0" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{url('/videos')}}">Your videos</a>
                         <a class="dropdown-item" href="{{url('/channel/'.$channel->slug)}}">Your channel</a>
                         <a class="dropdown-item" href="{{url('/channel/'.$channel->slug.'/edit')}}">Channel settings</a>
