@@ -101,5 +101,16 @@ class Video extends Model
     {
         return $this->views->count();
     }
-   
+   public function votes()
+   {
+       return $this->morphMany(Vote::class,'voteable');
+   }
+   public function upVotes()
+   {
+       return $this->votes->where('type','up');
+   }
+   public function downVotes()
+   {
+       return $this->votes->where('type','down');
+   }
 }

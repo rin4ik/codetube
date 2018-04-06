@@ -9,11 +9,11 @@
 
 <script>
 export default {
-  props: ["message", "level"],
+  props: ["message", "levels"],
   data() {
     return {
       body: this.message,
-      level: this.level,
+      level: this.levels,
       show: false
     };
   },
