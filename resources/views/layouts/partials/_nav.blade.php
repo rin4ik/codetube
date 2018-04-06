@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark  blue-grey elegant-color" style="padding-top:3px;padding-bottom:3px;">
+<nav class="navbar navbar-expand-lg navbar-dark unique-color-dark" style="padding-top:3px;padding-bottom:3px;">
     <div class="container">
-        <a class="navbar-brand " href="/"><img class="img-fluid" src="{{asset('images/logo1.png')}}" alt=""   >
-            <img class="img-fluid" src="{{asset('images/logo3.png')}}" width="20px" height="20px" alt=""  style="margin-left:-7px;margin-right:30px; margin-top:2px "  >
+        <a class="navbar-brand " href="/"><img class="img-fluid" src="{{asset('images/logo1.png')}}" style="margin-right:50px" alt=""   >
+            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">

@@ -26,6 +26,7 @@ Vue.component('register', require('./components/Register.vue'));
 Vue.component('edit', require('./components/Edit.vue'));
 Vue.component('video-player', require('./components/VideoPlayer.vue'));
 Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('video-voting', require('./components/VideoVoting.vue'));
 
 Vue.component('edit-channel', require('./components/EditChannel.vue'));
 
