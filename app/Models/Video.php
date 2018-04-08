@@ -32,6 +32,10 @@ class Video extends Model
    {
        return $this->belongsTo(Channel::class);
    }
+   public function comments()
+   {
+       return $this->morphMany(Comment::class, 'commentable')->where('reply_id',null);
+   }
 
    public function getRouteKeyName()
    {
