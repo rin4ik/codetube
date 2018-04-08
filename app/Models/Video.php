@@ -3,13 +3,14 @@
 namespace App\Models;
  
 use App\Models\VideoView;
+use App\Traits\Orderable;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Video extends Model
 {
-   use SoftDeletes,Searchable;
+   use SoftDeletes,Searchable,Orderable;
 
    protected $fillable = [
        'title',
@@ -37,11 +38,7 @@ class Video extends Model
        return 'uid';
    }
 
-   public function scopeLatestFirst($query)
-   {
-       return $query->orderBy('created_at', 'desc');
-   }
-
+ 
    public function votesAllowed()
    {
        return (bool) $this->allow_votes;

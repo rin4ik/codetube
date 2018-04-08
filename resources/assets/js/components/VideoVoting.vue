@@ -49,16 +49,10 @@ export default {
       this.createVote(type);
     },
     deleteVote(type) {
-      this.$http.delete("/videos/" + this.videoUid + "/votes").then(respons => {
-        flash("down", "danger");
-      });
+      this.$http.delete("/videos/" + this.videoUid + "/votes");
     },
     createVote(type) {
-      this.$http
-        .post("/videos/" + this.videoUid + "/votes", { type: type })
-        .then(response => {
-          flash("up");
-        });
+      this.$http.post("/videos/" + this.videoUid + "/votes", { type: type });
     }
   },
   mounted() {
