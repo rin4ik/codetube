@@ -37724,7 +37724,7 @@ function isFunction (fn) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(86);
+module.exports = __webpack_require__(89);
 
 
 /***/ }),
@@ -37767,8 +37767,9 @@ Vue.component('edit', __webpack_require__(53));
 Vue.component('video-player', __webpack_require__(56));
 Vue.component('flash', __webpack_require__(73));
 Vue.component('video-voting', __webpack_require__(81));
+Vue.component('video-comments', __webpack_require__(84));
 
-Vue.component('edit-channel', __webpack_require__(84));
+Vue.component('edit-channel', __webpack_require__(87));
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_js_modal___default.a);
@@ -77766,6 +77767,282 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(85)
 /* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/VideoComments.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-48c08368", Component.options)
+  } else {
+    hotAPI.reload("data-v-48c08368", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      comments: [],
+      body: null,
+      user: window.App.user,
+      signedIn: window.App.signedIn
+    };
+  },
+
+  props: {
+    videoUid: null
+  },
+  methods: {
+    createComment: function createComment() {
+      console.log("send request");
+    },
+    getComments: function getComments() {
+      var _this = this;
+
+      this.$http.get("/videos/" + this.videoUid + "/comments").then(function (response) {
+        _this.comments = response.data.data;
+      });
+    },
+    pluralizeComment: function pluralizeComment(count) {
+      if (count === 1) {
+        return count + " comment";
+      } else {
+        return count + " comments";
+      }
+    }
+  },
+
+  mounted: function mounted() {
+    this.getComments();
+  }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("p", [_vm._v(_vm._s(_vm.pluralizeComment(_vm.comments.length)))]),
+    _vm._v(" "),
+    _vm.signedIn
+      ? _c("div", { staticClass: "video-comment clearfix" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.body,
+                expression: "body"
+              }
+            ],
+            staticClass: "form-control video-comment__input",
+            attrs: { placeholder: "Say something" },
+            domProps: { value: _vm.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.body = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "pull-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-success btn-sm",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.createComment($event)
+                  }
+                }
+              },
+              [_vm._v("Post")]
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "media-list", staticStyle: { padding: "0" } },
+      _vm._l(_vm.comments, function(comment) {
+        return _c("li", { staticClass: "media" }, [
+          _c("div", { staticClass: "media-left" }, [
+            _c(
+              "a",
+              { attrs: { href: "/channel/" + comment.channel.data.slug } },
+              [
+                _c("img", {
+                  staticClass: "media-object",
+                  attrs: {
+                    src: comment.channel.data.image,
+                    alt: comment.channel.data.image
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "media-body" },
+            [
+              _c(
+                "a",
+                { attrs: { href: "/channel/" + comment.channel.data.slug } },
+                [_vm._v(_vm._s(comment.channel.data.name))]
+              ),
+              _vm._v("\n " + _vm._s(comment.created_at.date) + "  \n"),
+              _c("p", [_vm._v(_vm._s(comment.body))]),
+              _vm._v(" "),
+              _vm._l(comment.replies.data, function(reply) {
+                return _c("div", { staticClass: "media" }, [
+                  _c("div", { staticClass: "media-left" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "/channel/" + reply.channel.data.slug }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "media-object",
+                          attrs: {
+                            src: reply.channel.data.image,
+                            alt: comment.channel.data.image
+                          }
+                        })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "media-body" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "/channel/" + comment.channel.data.slug }
+                      },
+                      [_vm._v(_vm._s(comment.channel.data.name))]
+                    ),
+                    _vm._v("\n " + _vm._s(comment.created_at.date) + " \n "),
+                    _c("p", [_vm._v(_vm._s(reply.body))])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-48c08368", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(88)
+/* template */
 var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
@@ -77805,7 +78082,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77825,7 +78102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

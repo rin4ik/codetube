@@ -17269,6 +17269,14 @@ video::-webkit-media-text-track-display {
   color: #3097D1;
 }
 
+.video-comment {
+  margin-bottom: 10px;
+}
+
+.video-comment__input {
+  margin: 10px 0 10px 0;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

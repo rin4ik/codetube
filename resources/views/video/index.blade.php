@@ -7,11 +7,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Videos</div>
-
+                 
                 <div class="card-body">
-               @forelse($videos  as   $video)
+                    
+                    @php ($i=0)
+                    @forelse($videos  as   $video)
                 <div class="bg-light p-3 mb-4 " style="border:1px solid #e0e0e0; border-radius:5px;"  >
-                   
+
                 <div class="row" >
                         <div class="col-sm-3 ">
                             <a href="/videos/{{$video->uid}}"><img src="{{$video->getThumbnail()}}" class="img-fluid img-thumbnail" alt="{{$video->title}} thumbnail"></a>  

@@ -10,12 +10,11 @@ class VideoController extends Controller
     public function index()
     {
         $videos = request()->user()->videos()->latestFirst()->paginate(10);
-
         return view('video.index', compact('videos'));
     }
 
     public function show(Video $video)
-    { 
+    {
         return view('video.show', compact('video'));
     }
 
@@ -28,6 +27,7 @@ class VideoController extends Controller
 
     public function update(VideoUpdateRequest $request, Video $video)
     {
+
         $this->authorize('update', $video);
 
         $video->update([
@@ -45,6 +45,7 @@ class VideoController extends Controller
 
     public function store()
     {
+        
         $uid = uniqid(true);
         $channel = request()->user()->channel()->first();
 
