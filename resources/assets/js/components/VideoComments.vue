@@ -22,7 +22,7 @@
         </div>
         <div class="media-body">
 <a :href="'/channel/'+comment.channel.data.slug">{{comment.channel.data.name}}</a>
- {{comment.date}}  
+ <span v-text="ago(comment.created_at.date)"></span>
 <p>{{comment.body}}</p>
  
 <div class="media" v-for="reply in comment.replies.data">
@@ -33,7 +33,7 @@
      </div>
      <div class="media-body">
          <a :href="'/channel/'+comment.channel.data.slug">{{comment.channel.data.name}}</a>
- {{comment.created_at.date}} 
+ <span v-text="ago(comment.created_at.date)"></span>
  <p>{{reply.body}}</p>
      </div>
 </div>
@@ -45,6 +45,7 @@
 </div>
 </template>
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -87,9 +88,15 @@ export default {
       } else {
         return count + " comments";
       }
+    },
+    ago(value) {
+      return (
+        moment(value)
+          .subtract(120, "minutes")
+          .from(moment()) + "..."
+      );
     }
   },
-
   mounted() {
     this.getComments();
   }
