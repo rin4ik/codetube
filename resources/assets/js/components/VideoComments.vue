@@ -22,7 +22,7 @@
         </div>
         <div class="media-body">
 <a :href="'/channel/'+comment.channel.data.slug">{{comment.channel.data.name}}</a>
- {{comment.created_at.date}}  
+ {{comment.date}}  
 <p>{{comment.body}}</p>
  
 <div class="media" v-for="reply in comment.replies.data">
@@ -59,7 +59,20 @@ export default {
   },
   methods: {
     createComment() {
-      console.log("send request");
+      this.$http
+        .post("/videos/" + this.videoUid + "/comments", {
+          body: this.body
+        })
+        .then(
+          response => {
+            this.comments.unshift(response.data.data);
+            this.body = null;
+            flash("Your reply successfully added");
+          },
+          () => {
+            flash("Something went wrong", "danger");
+          }
+        );
     },
     getComments() {
       this.$http

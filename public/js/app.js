@@ -77873,13 +77873,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     createComment: function createComment() {
-      console.log("send request");
-    },
-    getComments: function getComments() {
       var _this = this;
 
+      this.$http.post("/videos/" + this.videoUid + "/comments", {
+        body: this.body
+      }).then(function (response) {
+        _this.comments.unshift(response.data.data);
+        _this.body = null;
+        flash("Your reply successfully added");
+      }, function () {
+        flash("Something went wrong", "danger");
+      });
+    },
+    getComments: function getComments() {
+      var _this2 = this;
+
       this.$http.get("/videos/" + this.videoUid + "/comments").then(function (response) {
-        _this.comments = response.data.data;
+        _this2.comments = response.data.data;
       });
     },
     pluralizeComment: function pluralizeComment(count) {
@@ -77980,7 +77990,7 @@ var render = function() {
                 { attrs: { href: "/channel/" + comment.channel.data.slug } },
                 [_vm._v(_vm._s(comment.channel.data.name))]
               ),
-              _vm._v("\n " + _vm._s(comment.created_at.date) + "  \n"),
+              _vm._v("\n " + _vm._s(comment.date) + "  \n"),
               _c("p", [_vm._v(_vm._s(comment.body))]),
               _vm._v(" "),
               _vm._l(comment.replies.data, function(reply) {
