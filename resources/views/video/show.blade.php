@@ -44,20 +44,18 @@
                        <div class="media-body">
                            <a href="/channel/{{$video->channel->slug}}" class="media-heading">{{$video->channel->name}}</a>
                            Subscribe
+                           <br> @if($video->description)
+                          
+                                   {!! nl2br(e($video->description)) !!}
+                               
+                <br>
+                           @endif
                        </div>
                    </div>
                </div>
 
            </div>
-           <br> @if($video->description)
-           <div class="card card-default">
-
-               <div class="card-body">
-                   {!! nl2br(e($video->description)) !!}
-               </div>
-           </div>
-<br>
-           @endif
+          <br>
            <div class="card card-default">
                <div class="card-body"> 
                    @if($video->commentsAllowed())
