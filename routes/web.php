@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/videos/{video}/votes', 'VideoVoteController@create');
     Route::delete('/videos/{video}/votes', 'VideoVoteController@remove');
     Route::post('/videos/{video}/comments', 'VideoCommentController@create');
+    Route::delete('/videos/{video}/comments/{comment}', 'VideoCommentController@delete');
 });
 
 Route::get('/channel/{channel}/edit', 'ChannelSettingsController@edit');

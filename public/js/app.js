@@ -94229,6 +94229,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -94248,6 +94256,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     videoUid: null
   },
   methods: {
+    deleteComment: function deleteComment(id) {
+      if (!confirm("Are you sure you want to delete this comment?")) {
+        return;
+      }
+      this.deleteById(id);
+      this.$http.delete("/videos/" + this.videoUid + "/comments/" + id).then(function () {
+        flash("succesfully deleted");
+      });
+    },
+    deleteById: function deleteById(id) {
+      var _this = this;
+
+      this.comments.map(function (comment, index) {
+        if (comment.id === id) {
+          _this.comments.splice(index, 1);
+          return;
+        }
+        comment.replies.data.map(function (reply, replyIndex) {
+          if (reply.id == id) {
+            _this.comments[index].replies.data.splice(replyIndex, 1);
+            return;
+          }
+        });
+      });
+    },
     toggleReplyForm: function toggleReplyForm(commentId) {
       this.replyBody = null;
       if (this.replyFormVisible === commentId) {
@@ -94257,19 +94290,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.replyFormVisible = commentId;
     },
     createReply: function createReply(commentId) {
-      var _this = this;
+      var _this2 = this;
 
       this.$http.post("/videos/" + this.videoUid + "/comments", {
         body: this.replyBody,
         reply_id: commentId
       }).then(function (response) {
-        _this.comments.map(function (comment, index) {
+        _this2.comments.map(function (comment, index) {
           if (comment.id === commentId) {
-            _this.comments[index].replies.data.unshift(response.data.data);
+            _this2.comments[index].replies.data.unshift(response.data.data);
           }
         });
-        _this.replyBody = null;
-        _this.replyFormVisible = null;
+        _this2.replyBody = null;
+        _this2.replyFormVisible = null;
 
         flash("Your reply successfully added");
       }, function () {
@@ -94277,23 +94310,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     createComment: function createComment() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$http.post("/videos/" + this.videoUid + "/comments", {
         body: this.body
       }).then(function (response) {
-        _this2.comments.unshift(response.data.data);
-        _this2.body = null;
+        _this3.comments.unshift(response.data.data);
+        _this3.body = null;
         flash("Your reply successfully added");
       }, function () {
         flash("Something went wrong", "danger");
       });
     },
     getComments: function getComments() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$http.get("/videos/" + this.videoUid + "/comments").then(function (response) {
-        _this3.comments = response.data.data;
+        _this4.comments = response.data.data;
       });
     },
     pluralizeComment: function pluralizeComment(count) {
@@ -94636,7 +94669,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "ul",
-      { staticClass: "media-list", staticStyle: { padding: "0" } },
+      { staticClass: "media-list", staticStyle: { "padding-left": "0" } },
       _vm._l(_vm.comments, function(comment) {
         return _c("li", { staticClass: "media" }, [
           _c("div", { staticClass: "media-left" }, [
@@ -94705,7 +94738,24 @@ var render = function() {
                               )
                             )
                           ]
-                        )
+                        ),
+                        _vm._v(" "),
+                        _vm.user.id === comment.user_id
+                          ? _c(
+                              "a",
+                              {
+                                staticStyle: { color: "red" },
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.deleteComment(comment.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          : _vm._e()
                       ])
                     : _vm._e()
                 ]
@@ -94784,18 +94834,49 @@ var render = function() {
                     _c(
                       "a",
                       {
-                        attrs: { href: "/channel/" + comment.channel.data.slug }
+                        attrs: { href: "/channel/" + reply.channel.data.slug }
                       },
-                      [_vm._v(_vm._s(comment.channel.data.name))]
+                      [_vm._v(_vm._s(reply.channel.data.name))]
                     ),
                     _vm._v(" "),
                     _c("span", {
                       domProps: {
-                        textContent: _vm._s(_vm.ago(comment.created_at.date))
+                        textContent: _vm._s(_vm.ago(reply.created_at.date))
                       }
                     }),
                     _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(reply.body))])
+                    _c("p", [_vm._v(_vm._s(reply.body))]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "list-inline",
+                        staticStyle: {
+                          "margin-bottom": "10px",
+                          "margin-top": "-20px"
+                        }
+                      },
+                      [
+                        _c("li", [
+                          _vm.user.id === reply.user_id
+                            ? _c(
+                                "a",
+                                {
+                                  staticStyle: { color: "red" },
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.deleteComment(reply.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            : _vm._e()
+                        ])
+                      ]
+                    )
                   ])
                 ])
               })

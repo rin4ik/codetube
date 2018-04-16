@@ -13,7 +13,7 @@
 </div>
 </div>
 
-<ul class="media-list" style="padding:0; ">
+<ul class="media-list" style="padding-left:0;  ">
     <li class="media" v-for="comment in comments">
         <div class="media-left">
             <a :href="'/channel/'+comment.channel.data.slug">
@@ -28,6 +28,8 @@
   <ul class="list-inline" style="margin-bottom:10px; margin-top:-20px;" >
     <li v-if="signedIn">
       <a href="#" @click.prevent="toggleReplyForm(comment.id)">{{replyFormVisible === comment.id ? 'Cancel' : 'Reply'}}</a>
+    
+      <a href="#" style="color:red" v-if="user.id === comment.user_id" @click.prevent="deleteComment(comment.id)">Delete</a>
     </li>
   </ul>
 
@@ -44,9 +46,15 @@
             </a>
      </div>
      <div class="media-body">
-         <a :href="'/channel/'+comment.channel.data.slug">{{comment.channel.data.name}}</a>
- <span v-text="ago(comment.created_at.date)"></span>
+         <a :href="'/channel/'+reply.channel.data.slug">{{reply.channel.data.name}}</a>
+ <span v-text="ago(reply.created_at.date)"></span>
  <p>{{reply.body}}</p>
+   <ul class="list-inline" style="margin-bottom:10px; margin-top:-20px;" >
+     
+    <li>
+      <a href="#" style="color:red" v-if="user.id === reply.user_id" @click.prevent="deleteComment(reply.id)">Delete</a>
+    </li>
+  </ul>
      </div>
 </div> 
  
@@ -74,6 +82,31 @@ export default {
     videoUid: null
   },
   methods: {
+    deleteComment(id) {
+      if (!confirm("Are you sure you want to delete this comment?")) {
+        return;
+      }
+      this.deleteById(id);
+      this.$http
+        .delete("/videos/" + this.videoUid + "/comments/" + id)
+        .then(() => {
+          flash("succesfully deleted");
+        });
+    },
+    deleteById(id) {
+      this.comments.map((comment, index) => {
+        if (comment.id === id) {
+          this.comments.splice(index, 1);
+          return;
+        }
+        comment.replies.data.map((reply, replyIndex) => {
+          if (reply.id == id) {
+            this.comments[index].replies.data.splice(replyIndex, 1);
+            return;
+          }
+        });
+      });
+    },
     toggleReplyForm(commentId) {
       this.replyBody = null;
       if (this.replyFormVisible === commentId) {
