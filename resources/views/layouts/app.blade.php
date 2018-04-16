@@ -40,7 +40,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <flash levels="{{session('level')}}" message="{{session('flash')}}"></flash>
+        <flash levels="{{session('level','success')}}" message="{{session('flash')}}"></flash>
         <div v-cloak >
                 @include('modals.all')
                
