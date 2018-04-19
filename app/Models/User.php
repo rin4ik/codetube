@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return (bool) $this->subscriptions->where('channel_id', $channel->id)->count();
     }
+
+    public function ownsChannel(Channel $channel)
+    {
+        return (bool) $this->channel->where('id', $channel->id)->count();
+    }
 }

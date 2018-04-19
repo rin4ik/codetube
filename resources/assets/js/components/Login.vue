@@ -18,7 +18,7 @@ export default {
         .post("/login", this.form)
         .then(() => location.reload())
         .catch(error => {
-          this.feedback = error.response.data.message;
+          this.feedback = error.response.data.errors;
           this.loading = false;
         });
     },

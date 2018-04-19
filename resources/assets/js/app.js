@@ -18,7 +18,10 @@ window.Vue = require('vue');
  */
 window.events = new Vue();
 window.flash = function(message, level = 'success') {
-    window.events.$emit('flash', { message, level });
+    window.events.$emit('flash', {
+        message,
+        level
+    });
 }
 Vue.component('video-upload', require('./components/VideoUpload.vue'));
 Vue.component('login', require('./components/Login.vue'));
@@ -28,6 +31,7 @@ Vue.component('video-player', require('./components/VideoPlayer.vue'));
 Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('video-voting', require('./components/VideoVoting.vue'));
 Vue.component('video-comments', require('./components/VideoComments.vue'));
+Vue.component('subscribe-button', require('./components/SubscribeButton.vue'));
 
 Vue.component('edit-channel', require('./components/EditChannel.vue'));
 

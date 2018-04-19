@@ -6,6 +6,11 @@
     border-right: 0
 }
 
+.small {
+    padding: 3px 7px;
+    font-size: .20rem;
+}
+
 .loader {
     color: transparent !important;
     pointer-events: none;

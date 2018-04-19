@@ -29,7 +29,7 @@
     <li v-if="signedIn">
       <a href="#" @click.prevent="toggleReplyForm(comment.id)">{{replyFormVisible === comment.id ? 'Cancel' : 'Reply'}}</a>
     
-      <a href="#" style="color:red" v-if="user.id === comment.user_id" @click.prevent="deleteComment(comment.id)">Delete</a>
+      <a href="#" style="color:red"  v-if="user.id === comment.user_id" @click.prevent="deleteComment(comment.id)">Delete</a>
     </li>
   </ul>
 

@@ -27,7 +27,6 @@ class VideoController extends Controller
 
     public function update(VideoUpdateRequest $request, Video $video)
     {
-
         $this->authorize('update', $video);
 
         $video->update([
@@ -45,7 +44,6 @@ class VideoController extends Controller
 
     public function store()
     {
-        
         $uid = uniqid(true);
         $channel = request()->user()->channel()->first();
 
@@ -69,6 +67,6 @@ class VideoController extends Controller
     {
         $this->authorize('delete', $video);
         $video->delete();
-        return redirect()->back();
+        return response(null, 200);
     }
 }

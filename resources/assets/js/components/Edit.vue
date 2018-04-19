@@ -1,11 +1,10 @@
 
   <template>
          <div style="flex">
-           
-           <form @submit="destroy">
+            
             <a @click="show" class="btn btn-outline-default btn-sm ">Edit</a>
-                                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>    
-            </form>
+           <button class="btn btn-outline-danger btn-sm" @click.prevent="destroy">Delete</button>    
+      
           <transition enter-active-class="animated fadeInUpBig" leave-active-class="animated shake" mode="out-in" appear>
 
 
@@ -81,9 +80,18 @@ export default {
   },
   methods: {
     destroy() {
-      this.$http.delete("/videos/" + this.video.uid);
-
-      setTimeout(flash("Deleted!", "danger"), 8000);
+      if (!confirm("Are you sure you want to delete this comment?")) {
+        return;
+      }
+      this.$http
+        .delete("/videos/" + this.video.uid)
+        .then(() => {
+          flash("succesfully deleted");
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+      splice(this.video);
     },
     update() {
       this.loading = true;

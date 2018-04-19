@@ -30,6 +30,7 @@
 
                <div class="card-body">
                    <h4>{{$video->title}}</h4>
+                   
                    <div class="pull-right">
                        <div class="video__views">
                             {{$video->viewCount()}} {{str_plural('view',$video->viewCount())}}
@@ -42,13 +43,13 @@
                                <img src="{{$video->channel->getImage()}}" alt="{{$video->channel->name}}"> </a>
                        </div>
                        <div class="media-body">
-                           <a href="/channel/{{$video->channel->slug}}" class="media-heading">{{$video->channel->name}}</a>
-                           Subscribe
-                           <br> @if($video->description)
+                           <a href="/channel/{{$video->channel->slug}}" class="media-heading">{{$video->channel->name}}</a> 
+                           <subscribe-button channel-slug="{{$video->channel->slug}}"></subscribe-button>
+                           @if($video->description)
                           
                                    {!! nl2br(e($video->description)) !!}
                                
-                <br>
+                
                            @endif
                        </div>
                    </div>
