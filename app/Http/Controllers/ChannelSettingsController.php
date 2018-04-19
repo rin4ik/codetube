@@ -17,7 +17,7 @@ class ChannelSettingsController extends Controller
     public function edit(Channel $channel)
     {
         // $this->authorize('update', $channel);
-
+      
         return view('channel.settings.edit', compact('channel'));
     }
 

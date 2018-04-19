@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use App\Models\VideoView;
 use App\Http\Requests\VideoUpdateRequest;
 
 class VideoController extends Controller
 {
     public function index()
     {
+    
         $videos = request()->user()->videos()->latestFirst()->paginate(10);
         return view('video.index', compact('videos'));
     }

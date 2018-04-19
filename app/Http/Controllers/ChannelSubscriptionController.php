@@ -24,4 +24,20 @@ class ChannelSubscriptionController extends Controller
             'data' => $response
         ], 200);
     }
+
+    public function create(Channel $channel)
+    {
+        $this->authorize('subscribe', $channel);
+        request()->user()->subscriptions()->create([
+            'channel_id' => $channel->id
+        ]);
+        return response()->json(null, 200);
+    }
+
+    public function delete(Channel $channel)
+    {
+        $this->authorize('unsubscribe', $channel);
+        request()->user()->subscriptions()->where('channel_id', $channel->id)->delete();
+        return response()->json(null, 200);
+    }
 }

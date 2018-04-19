@@ -1,7 +1,7 @@
 <template>
   <div>  
 <div  v-if="subscribers !== null">
-   {{pluralizeComment(subscribers) }}    &nbsp; <button v-if="canSubscribe" class="btn  small  light-green" type="button">{{userSubscribed ? 'Unsubscribe':'Subscribe'}}</button>
+   {{pluralizeComment(subscribers) }}    &nbsp; <button v-if="canSubscribe" class="btn  small  light-green" @click.prevent="handle" type="button">{{userSubscribed ? 'Unsubscribe':'Subscribe'}}</button>
 </div>
 
   </div>
@@ -26,12 +26,32 @@ export default {
       });
     },
     pluralizeComment(count) {
-      console.log(count);
       if (count === 1) {
         return count + " subscribe";
       } else {
         return count + " subscribers";
       }
+    },
+    handle() {
+      if (this.userSubscribed) {
+        this.unsubscribe();
+      } else {
+        this.subscribe();
+      }
+    },
+    subscribe() {
+      this.userSubscribed = true;
+      this.subscribers++;
+      this.$http.post("/subscription/" + this.channelSlug).then(response => {
+        flash("Subscribed");
+      });
+    },
+    unsubscribe() {
+      this.userSubscribed = false;
+      this.subscribers--;
+      this.$http.delete("/subscription/" + this.channelSlug).then(response => {
+        flash("Unsubscribed", "danger");
+      });
     }
   },
   mounted() {

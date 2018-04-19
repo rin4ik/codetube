@@ -8,6 +8,11 @@ class VideoView extends Model
 {
     protected $fillable = ['user_id', 'ip'];
 
+    public function video()
+    {
+        return $this->belongsTo(Video::class);
+    }
+
     public function scopeByUser($query, User $user)
     {
         return $query->where('user_id', $user->id);

@@ -94996,7 +94996,7 @@ exports = module.exports = __webpack_require__(17)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -95038,12 +95038,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     pluralizeComment: function pluralizeComment(count) {
-      console.log(count);
       if (count === 1) {
         return count + " subscribe";
       } else {
         return count + " subscribers";
       }
+    },
+    handle: function handle() {
+      if (this.userSubscribed) {
+        this.unsubscribe();
+      } else {
+        this.subscribe();
+      }
+    },
+    subscribe: function subscribe() {
+      this.userSubscribed = true;
+      this.subscribers++;
+      this.$http.post("/subscription/" + this.channelSlug).then(function (response) {
+        flash("Subscribed");
+      });
+    },
+    unsubscribe: function unsubscribe() {
+      this.userSubscribed = false;
+      this.subscribers--;
+      this.$http.delete("/subscription/" + this.channelSlug).then(function (response) {
+        flash("Unsubscribed", "danger");
+      });
     }
   },
   mounted: function mounted() {
@@ -95070,7 +95090,13 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn  small  light-green",
-                  attrs: { type: "button" }
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.handle($event)
+                    }
+                  }
                 },
                 [
                   _vm._v(
