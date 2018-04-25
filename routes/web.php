@@ -26,7 +26,7 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/videos/{video}/comments', 'VideoCommentController@index');
 Route::get('/subscriptions/{channel}', 'ChannelSubscriptionController@show');
-
+Route::resource('/posts', 'VideoController');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/upload', 'VideoUploadController@index');
     Route::post('/upload', 'VideoUploadController@store');

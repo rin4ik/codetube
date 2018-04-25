@@ -94338,6 +94338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this4 = this;
 
       this.$http.get("/videos/" + this.videoUid + "/comments").then(function (response) {
+        console.log(response);
         _this4.comments = response.data.data;
       });
     },

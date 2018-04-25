@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="padding:15px">
     <div class="col-sm-3">
         <a href="/videos/{{$video->uid}}">
             <img src="{{$video->getThumbnail()}}"  class="img-fluid " alt="{{$video->title}} image">
@@ -9,8 +9,8 @@
         @if($video->description)
             <p>{{$video->description}}</p>
         @endif
-        <ul class="list-inline">
-            <li  class="list-inline-item"><a href="/channel/{{$video->channel->slug}}">{{$video->channel->name}}</a></li> <li  class="list-inline-item">{{$video->created_at->diffForHumans()}}</li>
+        <ul class="list-inline mb-2" >
+            <li  class="list-inline-item mb-4"><a href="/channel/{{$video->channel->slug}}">{{$video->channel->name}}</a></li> <li  class="list-inline-item">{{$video->created_at->diffForHumans()}}</li>
       <li  class="list-inline-item">{{$video->viewCount()}} {{str_plural('view',$video->viewCount())}}</li>
         </ul>
     </div>

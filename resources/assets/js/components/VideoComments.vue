@@ -158,6 +158,7 @@ export default {
       this.$http
         .get("/videos/" + this.videoUid + "/comments")
         .then(response => {
+          console.log(response);
           this.comments = response.data.data;
         });
     },

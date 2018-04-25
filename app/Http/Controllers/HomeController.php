@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
+
 class HomeController extends Controller
 {
     /**
@@ -19,8 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, UserRepository $users)
     {
-        return view('home');
+        return view('home', [
+            'subscriptionVideos' => $users->videosFromSubscriptions($request->user())
+        ]);
     }
 }

@@ -42,7 +42,18 @@ class Video extends Model
        return 'uid';
    }
 
- 
+public function scopeProcessed($query)
+{
+    return $query->where('processed',true);
+}
+public function scopePublic($query)
+{
+    return $query->where('visibility','public');
+}
+public function scopeVisible($query)
+{
+    return $query->processed()->public();
+}
    public function votesAllowed()
    {
        return (bool) $this->allow_votes;
