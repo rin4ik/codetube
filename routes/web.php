@@ -23,6 +23,7 @@ Route::post('/videos/{video}/views', 'VideoViewController@store');
 Route::get('/videos/{video}/votes', 'VideoVoteController@show');
 
 Route::get('/search', 'SearchController@index');
+Route::get('/channel/{channel}', 'ChannelController@show');
 
 Route::get('/videos/{video}/comments', 'VideoCommentController@index');
 Route::get('/subscriptions/{channel}', 'ChannelSubscriptionController@show');

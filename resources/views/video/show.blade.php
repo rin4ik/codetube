@@ -39,7 +39,7 @@
                    </div>
                    <div class="media ">
                        <div class="media-left ">
-                           <a href="/channel/{{$video->channel->slug}}" c>
+                           <a href="/channel/{{$video->channel->slug}}">
                                <img src="{{$video->channel->getImage()}}" alt="{{$video->channel->name}}"> </a>
                        </div>
                        <div class="media-body">
