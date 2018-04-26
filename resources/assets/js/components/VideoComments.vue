@@ -1,5 +1,7 @@
 <template>
-  <div>
+<div>
+
+  <div v-if="signedIn">
 
   
 <p>{{pluralizeComment(comments.length) }}</p>
@@ -67,6 +69,10 @@
     </li>
 </ul>
 </div>
+<div v-else>
+  <p>Please login in order to participate </p>
+</div>
+</div>
 </template>
 <script>
 import moment from "moment";
@@ -130,6 +136,7 @@ export default {
             this.comments.map((comment, index) => {
               if (comment.id === commentId) {
                 this.comments[index].replies.data.unshift(response.data.data);
+                return;
               }
             });
             this.replyBody = null;
@@ -162,7 +169,6 @@ export default {
       this.$http
         .get("/videos/" + this.videoUid + "/comments")
         .then(response => {
-          console.log(response);
           this.comments = response.data.data;
         });
     },

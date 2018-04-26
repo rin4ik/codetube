@@ -10,7 +10,7 @@ class ChannelController extends Controller
     {
         return view('channel.show', [
             'channel' => $channel,
-            'videos' => $channel->videos()->latestFirst()->paginate(5)
+            'videos' => $channel->videos()->visible()->latestFirst()->paginate(5)
         ]);
     }
 }

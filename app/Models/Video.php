@@ -36,7 +36,21 @@ class Video extends Model
    {
        return $this->morphMany(Comment::class, 'commentable')->where('reply_id',null);
    }
-
+    /**
+     * toSearchableArray algolia
+     *
+     * @return void
+     */
+    public function toSearchableArray()
+    {
+        $properties = $this->toArray();
+        $properties['visible']= $this->isProcessed() && $this->isPublic();
+        return $properties;
+    }
+    public function isPublic()
+    {
+        return $this->visibility === 'public';
+    }
    public function getRouteKeyName()
    {
        return 'uid';
