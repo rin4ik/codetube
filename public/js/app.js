@@ -94249,6 +94249,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -94665,8 +94669,8 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-outline-green btn-sm",
-                attrs: { type: "submit" },
+                staticClass: "btn btn-info ",
+                staticStyle: { padding: "5px 9px" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -94674,7 +94678,10 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Post")]
+              [
+                _vm._v("Reply\n                        "),
+                _c("i", { staticClass: "fa fa-send ml-1" })
+              ]
             )
           ])
         ])
@@ -94807,8 +94814,8 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-blue btn-sm ",
-                            attrs: { type: "submit" },
+                            staticClass: "btn btn-info ",
+                            staticStyle: { padding: "5px 9px" },
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
@@ -94816,7 +94823,10 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Reply")]
+                          [
+                            _vm._v("Reply\n                        "),
+                            _c("i", { staticClass: "fa fa-send ml-1" })
+                          ]
                         )
                       ]
                     )
@@ -94997,7 +95007,7 @@ exports = module.exports = __webpack_require__(17)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -95008,9 +95018,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -95080,35 +95087,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.subscribers !== null
-      ? _c("div", [
-          _vm._v(
-            "\n   " + _vm._s(_vm.pluralizeComment(_vm.subscribers)) + "      "
-          ),
-          _vm.canSubscribe
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn  small  light-green",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.handle($event)
-                    }
+  return _vm.subscribers !== null
+    ? _c("div", [
+        _vm._v(
+          "\n   " + _vm._s(_vm.pluralizeComment(_vm.subscribers)) + "      "
+        ),
+        _vm.canSubscribe
+          ? _c(
+              "button",
+              {
+                staticClass: "btn  small  light-green",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.handle($event)
                   }
-                },
-                [
-                  _vm._v(
-                    _vm._s(_vm.userSubscribed ? "Unsubscribe" : "Subscribe")
-                  )
-                ]
-              )
-            : _vm._e()
-        ])
-      : _vm._e()
-  ])
+                }
+              },
+              [_vm._v(_vm._s(_vm.userSubscribed ? "Unsubscribe" : "Subscribe"))]
+            )
+          : _vm._e()
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

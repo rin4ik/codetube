@@ -1,10 +1,7 @@
-<template>
-  <div>  
-<div  v-if="subscribers !== null">
+<template> 
+<div    v-if="subscribers !== null">
    {{pluralizeComment(subscribers) }}    &nbsp; <button v-if="canSubscribe" class="btn  small  light-green" @click.prevent="handle" type="button">{{userSubscribed ? 'Unsubscribe':'Subscribe'}}</button>
-</div>
-
-  </div>
+</div> 
 </template>
 
 <script>

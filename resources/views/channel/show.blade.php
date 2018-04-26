@@ -13,10 +13,13 @@
                         </div>
                         <div class="media-body">
                             {{$channel->name}}
-                            <ul class="list-inline">
+                            <ul class="list-inline  ">
 
                                     <li>
                                         <subscribe-button channel-slug="{{$channel->slug}}"></subscribe-button>
+                                    </li>
+                                    <li style="color:green">
+                                        {{$channel->totalVideoViews() }} video {{str_plural('view',$channel->totalVideoViews() )}}
                                     </li>
                                     
                             </ul>

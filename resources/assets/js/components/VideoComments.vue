@@ -9,7 +9,9 @@
  
 </textarea>
 <div class="pull-right">
-  <button type="submit" class="btn btn-outline-green btn-sm" @click.prevent="createComment">Post</button>
+     <button class="btn btn-info " style="padding:5px 9px"  @click.prevent="createComment">Reply
+                        <i class="fa fa-send ml-1"></i>
+                    </button>
 </div>
 </div>
 
@@ -36,7 +38,9 @@
  <div class="video-comment" v-if="replyFormVisible === comment.id" >
    <textarea class="form-control" v-model="replyBody"></textarea>
    <div class="pull-right" style="margin-bottom:10px;">
-     <button class="btn btn-blue btn-sm " type="submit" @click.prevent="createReply(comment.id)">Reply</button>
+  <button class="btn btn-info " style="padding:5px 9px"  @click.prevent="createReply(comment.id)">Reply
+                        <i class="fa fa-send ml-1"></i>
+                    </button>
       </div>
  </div>
 <div class="media" v-for="reply in comment.replies.data">

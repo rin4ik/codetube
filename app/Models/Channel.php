@@ -52,4 +52,9 @@ class Channel extends Model
     {
         return $this->subscriptions->count();
     }
+
+    public function totalVideoViews()
+    {
+        return $this->hasManyThrough(VideoView::class, Video::class)->count();
+    }
 }
