@@ -6,7 +6,10 @@
                 <div class="card-header">Search for "{{Request::get('q')}}"</div>
 
                 <div class="card-body">
-                    @if($channels->count()) @foreach($channels as $channel)
+                    @if($channels->count())
+                    <h4>Channels</h4>
+                    @foreach($channels as $channel)
+
                     <div class="bg-light p-3 mb-4 " style="border:1px solid #e0e0e0; border-radius:5px;">
                         <div class="media">
                             <div class="media-left">
@@ -27,8 +30,10 @@
                     </div>
 
                     @endforeach @endif
-                     
+                    <h4>Videos</h4>
                     @if($videos->count())
+             
+                    
                      @foreach($videos as $video)
                     <div class="bg-light p-3 mb-4 " style="border:1px solid #e0e0e0; border-radius:5px;">
                         @include('video.partials._video_result',['video'=>$video])
