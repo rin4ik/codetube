@@ -1,7 +1,5 @@
 <template>
-<div>
-
-  <div v-if="signedIn">
+<div> 
 
   
 <p>{{pluralizeComment(comments.length) }}</p>
@@ -29,15 +27,15 @@
  <span v-text="ago(comment.created_at.date)"></span>
 <p>{{comment.body}}</p>
   
-  <ul class="list-inline" style="margin-bottom:10px; margin-top:-20px;" >
-    <li v-if="signedIn">
+  <ul class="list-inline" style="margin-bottom:10px; margin-top:-20px;" v-if="signedIn" >
+    <li >
       <a href="#" @click.prevent="toggleReplyForm(comment.id)">{{replyFormVisible === comment.id ? 'Cancel' : 'Reply'}}</a>
     
       <a href="#" style="color:red"  v-if="user.id === comment.user_id" @click.prevent="deleteComment(comment.id)">Delete</a>
     </li>
   </ul>
 
- <div class="video-comment" v-if="replyFormVisible === comment.id" >
+ <div class="video-comment" v-if="replyFormVisible === comment.id && signedIn"   >
    <textarea class="form-control" v-model="replyBody"></textarea>
    <div class="pull-right" style="margin-bottom:10px;">
   <button class="btn btn-info " style="padding:5px 9px"  @click.prevent="createReply(comment.id)">Reply
@@ -57,7 +55,7 @@
  <p>{{reply.body}}</p>
    <ul class="list-inline" style="margin-bottom:10px; margin-top:-20px;" >
      
-    <li>
+    <li v-if="signedIn">
       <a href="#" style="color:red" v-if="user.id === reply.user_id" @click.prevent="deleteComment(reply.id)">Delete</a>
     </li>
   </ul>
@@ -67,11 +65,7 @@
 
         </div> 
     </li>
-</ul>
-</div>
-<div v-else>
-  <p>Please login in order to participate </p>
-</div>
+</ul> 
 </div>
 </template>
 <script>
