@@ -15,8 +15,13 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="/channel/{{$channel->slug}}" class="media-heading">{{$channel->name}}</a> 
-                             Subscription count 
+                                <a href="/channel/{{$channel->slug}}" class="media-heading">{{$channel->name}} </a> 
+                           <ul class="list-inline">
+                               <li>
+                                    {{$channel->subscriptionCount()}} {{str_plural('subscriber', $channel->subscriptionCount())}}
+                               </li>
+                           </ul>
+                                    
                             </div>
                         </div>
                     </div>
