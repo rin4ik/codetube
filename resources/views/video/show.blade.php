@@ -34,8 +34,10 @@
                    <div class="pull-right">
                        <div class="video__views">
                             {{$video->viewCount()}} {{str_plural('view',$video->viewCount())}}
+                            @if($video->votesAllowed())
                             <video-voting video-uid="{{$video->uid}}"></video-voting>
-                       </div>
+                            @endif
+                        </div>
                    </div>
                    <div class="media ">
                        <div class="media-left ">
