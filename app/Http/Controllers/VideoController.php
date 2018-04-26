@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use App\Models\VideoView;
 use App\Http\Requests\VideoUpdateRequest;
+use App\Http\Requests\VideoCreateRequest;
 
 class VideoController extends Controller
 {
@@ -44,19 +45,19 @@ class VideoController extends Controller
         return redirect()->back();
     }
 
-    public function store()
+    public function store(VideoCreateRequest $request)
     {
         $uid = uniqid(true);
-        $channel = request()->user()->channel()->first();
+        $channel = $request->user()->channel()->first();
 
         $video1 = $channel->videos();
 
         $video = $channel->videos()->create([
             'uid' => $uid,
-            'title' => request()->title,
-            'description' => request()->description,
-            'visibility' => request()->visibility,
-            'video_filename' => "{$uid}." . request()->extension
+            'title' => $request->title,
+            'description' => $request->description,
+            'visibility' => $request->visibility,
+            'video_filename' => "{$uid}." . $request->extension
             ]);
         return response()->json([
                 'data' => [
