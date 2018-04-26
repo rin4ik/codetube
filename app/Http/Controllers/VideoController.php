@@ -43,8 +43,7 @@ class VideoController extends Controller
             return response()->json(null, 200);
         }
         return redirect()->back();
-    }
-
+    } 
     public function store(VideoCreateRequest $request)
     {
         $uid = uniqid(true);
