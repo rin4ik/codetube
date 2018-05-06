@@ -8,6 +8,7 @@ use App\Http\Requests\ChannelUpdateRequest;
 
 class ChannelSettingsController extends Controller
 {
+    
     /**
      * Show the form for editing the specified resource.
      *

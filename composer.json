@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -15,7 +18,8 @@
         "laravel/scout": "^4.0",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "spatie/laravel-fractal": "^5.3"
+        "spatie/laravel-fractal": "^5.3",
+        "tcg/voyager": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
@@ -62,5 +66,11 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "hooks": {
+            "type": "composer",
+            "url": "https://larapack.io"
+        }
+    }
 }

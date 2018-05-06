@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    Log::emergency('The site needs help stat!!!');
     return view('welcome');
 });
 
@@ -46,3 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/channel/{channel}/edit', 'ChannelSettingsController@edit');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
